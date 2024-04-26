@@ -1,0 +1,23 @@
+.input {
+    outline: none;
+    width: 100%;
+    border: 1px solid #2f3035;
+    border-radius: 5px;
+    padding: 2px 16px;
+    font-weight: 600;
+    font-size: .8rem;
+    line-height: 1.5rem;
+    color: #fff;
+    background-color: transparent;
+}
+
+input::placeholder {
+    color: #a5a3a9;
+    font-weight: 400;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
