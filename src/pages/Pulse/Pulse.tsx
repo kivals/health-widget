@@ -1,8 +1,15 @@
-const Pulse = () => {
+import { FC } from "react";
+import PageLayout from "../PageLayout/PageLayout.tsx";
+
+interface IPulse {
+  title: string,
+}
+
+const Pulse: FC<IPulse> = ({ title }) => {
   return (
-    <div>
+    <PageLayout title={title}>
       Pulse
-    </div>
+    </PageLayout>
   );
 };
 

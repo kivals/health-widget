@@ -1,9 +1,16 @@
-const Pressure= () => {
+import { FC } from "react";
+import PageLayout from "../PageLayout/PageLayout.tsx";
+
+interface IPressure {
+  title: string,
+}
+
+const Pressure: FC<IPressure> = ({ title }) => {
 
   return (
-      <div>
-        Pressure
-      </div>
+    <PageLayout title={title}>
+      PRESSURE
+    </PageLayout>
   );
 };
 

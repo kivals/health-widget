@@ -1,8 +1,15 @@
-const Temperature = () => {
+import { FC } from "react";
+import PageLayout from "../PageLayout/PageLayout.tsx";
+
+interface ITemperature {
+  title: string,
+}
+
+const Temperature: FC<ITemperature> = ({ title }) => {
   return (
-    <div>
+    <PageLayout title={title}>
       Temperature
-    </div>
+    </PageLayout>
   );
 };
 

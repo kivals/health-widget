@@ -20,15 +20,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/pressure",
-        element: <Pressure />
+        element: <Pressure title={"Просмотр и изменение показателей давления"} />
       },
       {
         path: "/pulse",
-        element: <Pulse />
+        element: <Pulse title={"Просмотр и изменение показателей пульса"}/>
       },
       {
         path: "/temperature",
-        element: <Temperature />
+        element: <Temperature title={"Просмотр и изменение показателей температуры"}/>
       }
     ]
   },
