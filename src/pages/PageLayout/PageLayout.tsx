@@ -1,15 +1,16 @@
-import React, { FC, useState } from "react";
+import {FC, ReactNode, useContext} from "react";
+import { AppContext } from "../../context/AppContext.tsx";
+import { TAppContext } from "../../types/TAppContext.ts";
 import RadioInput from "../../components/UI/RadioInput/RadioInput.tsx";
 import styles from "./PageLayout.module.css";
 
-
 interface IPageLayout {
   title: string,
-  children: React.ReactNode,
+  children: ReactNode,
 }
 
 const PageLayout:FC<IPageLayout> = ({ title, children}) => {
-  const [size, setSize] = useState<string>("big");
+  const { size, setSize } = useContext(AppContext) as TAppContext;
 
   return (
     <div className={styles.wrapper}>
