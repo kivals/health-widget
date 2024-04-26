@@ -1,6 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider
+} from "react-router-dom";
+import { AppProvider } from "./context/AppContext.tsx";
 import AppLayout from "./pages/AppLayout/AppLayout.tsx";
 import NotFound from "./pages/NotFound/NotFound.tsx";
 import Pressure from "./pages/Pressure/Pressure.tsx";
@@ -36,6 +41,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AppProvider>
+      <RouterProvider router={router} />
+    </AppProvider>
   </React.StrictMode>,
 )

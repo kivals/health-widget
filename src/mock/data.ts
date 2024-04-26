@@ -1,4 +1,4 @@
-import {IData} from "../types/IData.ts";
+import { IData } from "../types/IData.ts";
 
 const mockSystolicData: IData = {
   name: "Диастолическое давление",
@@ -6,7 +6,7 @@ const mockSystolicData: IData = {
   units: "мм. рт. ст.",
   maxValue: 350,
   minValue: 50,
-  allowEdit: true, // разрешение на изменение показателя
+  allowEdit: true,
 }
 
 const mockDiastolicData: IData = {
@@ -15,7 +15,7 @@ const mockDiastolicData: IData = {
   units: "мм. рт. ст.",
   maxValue: 100,
   minValue: 1,
-  allowEdit: true, // разрешение на изменение показателя
+  allowEdit: true,
 }
 
 const mockPulseData: IData = {
@@ -24,7 +24,7 @@ const mockPulseData: IData = {
   units: "уд./мин.",
   maxValue: 280,
   minValue: 10,
-  allowEdit: true, // разрешение на изменение показателя
+  allowEdit: true,
 }
 
 const mockTemperatureData: IData = {
@@ -33,12 +33,22 @@ const mockTemperatureData: IData = {
   units: "°C",
   maxValue: 42.0,
   minValue: 34.3,
-  allowEdit: true, // разрешение на изменение показателя
+  allowEdit: true,
 }
+
+// Данные добавлены для начальной инициализации контекста
+const mockPulseHistoryData: number[] = [34,45,98,55];
+const mockTemperatureHistoryData: number[] = [36.6, 39.9, 34.0, 34];
+const mockSystolicHistoryData: number[] = [50,60,100,80];
+const mockDiastolicHistoryData: number[] = [110,100,140,180];
 
 export {
   mockDiastolicData,
   mockSystolicData,
   mockPulseData,
   mockTemperatureData,
+  mockPulseHistoryData,
+  mockTemperatureHistoryData,
+  mockSystolicHistoryData,
+  mockDiastolicHistoryData
 }
