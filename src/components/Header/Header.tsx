@@ -43,6 +43,15 @@ const Header = () => {
               Графики
             </NavLink>
           </li>
+          <li className={styles.menuItem}>
+            <NavLink
+              className={(navData) =>
+                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
+              to='/outdoor'
+            >
+              Температура на улице
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
