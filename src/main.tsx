@@ -28,26 +28,30 @@ const router = createBrowserRouter([
       {
         path: '/pressure',
         element: (
-          <Pressure title={'Просмотр и изменение показателей давления'} />
+          <Pressure caption={'Просмотр и изменение показателей давления'}
+                    title={'Давление'} />
         ),
       },
       {
         path: '/pulse',
-        element: <Pulse title={'Просмотр и изменение показателей пульса'} />,
+        element: <Pulse caption={'Просмотр и изменение показателей пульса'}
+                        title={'Пульс'} />,
       },
       {
         path: '/temperature',
         element: (
-          <Temperature title={'Просмотр и изменение показателей температуры'} />
+          <Temperature caption={'Просмотр и изменение показателей температуры'}
+                       title={'Температура'} />
         ),
       },
       {
         path: '/graphics',
-        element: <Graphics />,
+        element: <Graphics title={'Графики'} />,
       },
       {
         path: '/outdoor',
-        element: <OutdoorTemperature title={'Просмотр показателя температуры на улице'} />,
+        element: <OutdoorTemperature caption={'Просмотр показателя температуры на улице'}
+                                     title={'Температура на улице'} />,
       },
     ],
   },

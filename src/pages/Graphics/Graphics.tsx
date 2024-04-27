@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext.tsx';
 import { TAppContext } from '../../types/TAppContext.ts';
 import {
@@ -25,7 +25,15 @@ ChartJS.register(
   Legend,
 );
 
-const Graphics = () => {
+interface IGraphics {
+  title: string,
+}
+
+const Graphics: FC<IGraphics> = ({ title }) => {
+  useEffect(() => {
+    document.title = title || '';
+  }, [title]);
+
   const {
     pulseHistory,
     temperatureHistory,

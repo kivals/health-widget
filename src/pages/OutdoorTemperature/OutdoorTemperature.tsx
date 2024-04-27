@@ -10,9 +10,14 @@ const WEATHER_SRC =
 
 interface IOutdoorTemperature {
   title: string,
+  caption: string,
 }
 
-const OutdoorTemperature: FC<IOutdoorTemperature> = ({ title }) => {
+const OutdoorTemperature: FC<IOutdoorTemperature> = ({ title, caption }) => {
+  useEffect(() => {
+    document.title = title || caption;
+  }, [title, caption]);
+
   const [currentTemperatureData, setCurrentTemperatureData] = useState<IData | null>(null);
 
   useEffect(() => {
@@ -36,7 +41,7 @@ const OutdoorTemperature: FC<IOutdoorTemperature> = ({ title }) => {
 
 
   return (
-    <PageLayout title={title}>
+    <PageLayout caption={caption}>
       <FetchParameter data={currentTemperatureData} />
     </PageLayout>
   );

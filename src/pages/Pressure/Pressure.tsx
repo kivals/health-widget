@@ -1,18 +1,23 @@
-import { FC, useContext, useState } from "react";
-import { AppContext } from "../../context/AppContext.tsx";
-import { TAppContext } from "../../types/TAppContext.ts";
-import { TState } from "../../types/TState.ts";
-import { IParameterConfig } from "../../types/IParameterConfig.ts";
-import Parameter from "../../components/Parameter/Parameter.tsx";
-import PageLayout from "../PageLayout/PageLayout.tsx";
-import { rangeValue } from "../../utils/common.ts";
-import { mockDiastolicData, mockSystolicData } from "../../mock/data.ts";
+import { FC, useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../context/AppContext.tsx';
+import { TAppContext } from '../../types/TAppContext.ts';
+import { TState } from '../../types/TState.ts';
+import { IParameterConfig } from '../../types/IParameterConfig.ts';
+import Parameter from '../../components/Parameter/Parameter.tsx';
+import PageLayout from '../PageLayout/PageLayout.tsx';
+import { rangeValue } from '../../utils/common.ts';
+import { mockDiastolicData, mockSystolicData } from '../../mock/data.ts';
 
 interface IPressure {
-  title: string;
+  caption: string,
+  title?: string;
 }
 
-const Pressure: FC<IPressure> = ({ title }) => {
+const Pressure: FC<IPressure> = ({ caption, title }) => {
+  useEffect(() => {
+    document.title = title || caption;
+  }, [title, caption]);
+  
   const {
     systolicHistory,
     setSystolicHistory,
@@ -22,13 +27,13 @@ const Pressure: FC<IPressure> = ({ title }) => {
 
   const [systolicParameter, setSystolicParameter] = useState<IParameterConfig>({
     data: mockSystolicData,
-    state: "show",
+    state: 'show',
   });
 
   const [diastolicParameter, setDiastolicParameter] =
     useState<IParameterConfig>({
       data: mockDiastolicData,
-      state: "show",
+      state: 'show',
     });
 
   const onChangeSystolicState = (state: TState) => {
@@ -44,7 +49,7 @@ const Pressure: FC<IPressure> = ({ title }) => {
         ...prev.data,
         value,
       },
-      state: "show",
+      state: 'show',
     }));
     setSystolicHistory([
       ...systolicHistory,
@@ -69,7 +74,7 @@ const Pressure: FC<IPressure> = ({ title }) => {
         ...prev.data,
         value,
       },
-      state: "show",
+      state: 'show',
     }));
 
     setDiastolicHistory([
@@ -83,7 +88,7 @@ const Pressure: FC<IPressure> = ({ title }) => {
   };
 
   return (
-    <PageLayout title={title}>
+    <PageLayout caption={caption}>
       <Parameter
         data={systolicParameter.data}
         state={systolicParameter.state}

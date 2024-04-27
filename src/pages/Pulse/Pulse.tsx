@@ -1,25 +1,31 @@
-import { FC, useContext, useState } from "react";
-import { AppContext } from "../../context/AppContext.tsx";
-import { TAppContext } from "../../types/TAppContext.ts";
-import { IParameterConfig } from "../../types/IParameterConfig.ts";
-import { mockPulseData } from "../../mock/data.ts";
-import { TState } from "../../types/TState.ts";
-import PageLayout from "../PageLayout/PageLayout.tsx";
-import Parameter from "../../components/Parameter/Parameter.tsx";
-import { rangeValue } from "../../utils/common.ts";
+import { FC, useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../context/AppContext.tsx';
+import { TAppContext } from '../../types/TAppContext.ts';
+import { IParameterConfig } from '../../types/IParameterConfig.ts';
+import { mockPulseData } from '../../mock/data.ts';
+import { TState } from '../../types/TState.ts';
+import PageLayout from '../PageLayout/PageLayout.tsx';
+import Parameter from '../../components/Parameter/Parameter.tsx';
+import { rangeValue } from '../../utils/common.ts';
 
 interface IPulse {
   title: string;
+  caption: string,
 }
 
-const Pulse: FC<IPulse> = ({ title }) => {
+const Pulse: FC<IPulse> = ({ title, caption }) => {
+
+  useEffect(() => {
+    document.title = title || caption;
+  }, [title, caption]);
+  
   const { pulseHistory, setPulseHistory } = useContext(
     AppContext,
   ) as TAppContext;
 
   const [pulseParameter, setPulseParameter] = useState<IParameterConfig>({
     data: mockPulseData,
-    state: "show",
+    state: 'show',
   });
 
   const onChangePulseState = (state: TState) => {
@@ -35,7 +41,7 @@ const Pulse: FC<IPulse> = ({ title }) => {
         ...prev.data,
         value,
       },
-      state: "show",
+      state: 'show',
     }));
 
     setPulseHistory([
@@ -48,7 +54,7 @@ const Pulse: FC<IPulse> = ({ title }) => {
     ]);
   };
   return (
-    <PageLayout title={title}>
+    <PageLayout caption={caption}>
       <Parameter
         data={pulseParameter.data}
         state={pulseParameter.state}
