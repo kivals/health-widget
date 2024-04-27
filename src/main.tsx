@@ -1,54 +1,59 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   Navigate,
   RouterProvider,
-} from "react-router-dom";
-import { AppProvider } from "./context/AppContext.tsx";
-import AppLayout from "./pages/AppLayout/AppLayout.tsx";
-import NotFound from "./pages/NotFound/NotFound.tsx";
-import Pressure from "./pages/Pressure/Pressure.tsx";
-import Pulse from "./pages/Pulse/Pulse.tsx";
-import Temperature from "./pages/Temperature/Temperature.tsx";
-import Graphics from "./pages/Graphics/Graphics.tsx";
-import "./styles/index.css";
+} from 'react-router-dom';
+import { AppProvider } from './context/AppContext.tsx';
+import AppLayout from './pages/AppLayout/AppLayout.tsx';
+import NotFound from './pages/NotFound/NotFound.tsx';
+import Pressure from './pages/Pressure/Pressure.tsx';
+import Pulse from './pages/Pulse/Pulse.tsx';
+import Temperature from './pages/Temperature/Temperature.tsx';
+import Graphics from './pages/Graphics/Graphics.tsx';
+import './styles/index.css';
+import OutdoorTemperature from './pages/OutdoorTemperature/OutdoorTemperature.tsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <AppLayout />,
     errorElement: <NotFound />,
     children: [
       {
         index: true,
-        element: <Navigate to="/pressure" replace />,
+        element: <Navigate to='/pressure' replace />,
       },
       {
-        path: "/pressure",
+        path: '/pressure',
         element: (
-          <Pressure title={"Просмотр и изменение показателей давления"} />
+          <Pressure title={'Просмотр и изменение показателей давления'} />
         ),
       },
       {
-        path: "/pulse",
-        element: <Pulse title={"Просмотр и изменение показателей пульса"} />,
+        path: '/pulse',
+        element: <Pulse title={'Просмотр и изменение показателей пульса'} />,
       },
       {
-        path: "/temperature",
+        path: '/temperature',
         element: (
-          <Temperature title={"Просмотр и изменение показателей температуры"} />
+          <Temperature title={'Просмотр и изменение показателей температуры'} />
         ),
       },
       {
-        path: "/graphics",
+        path: '/graphics',
         element: <Graphics />,
+      },
+      {
+        path: '/outdoor',
+        element: <OutdoorTemperature title={'Просмотр показателя температуры на улице'} />,
       },
     ],
   },
-]);
+], { basename: '/health-widget' });
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AppProvider>
       <RouterProvider router={router} />
