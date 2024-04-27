@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
-import styles from "./Header.module.css";
+import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+import styles from './Header.module.css';
 
 const Header = () => {
   return (
@@ -8,23 +9,38 @@ const Header = () => {
         <ul className={styles.menu_list}>
           <li>
             <NavLink
-              className={(navData) => navData.isActive ? styles.active : styles.menu_link}
+              className={(navData) =>
+                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
               to='/pressure'
-            >Давление
+            >
+              Давление
             </NavLink>
           </li>
           <li>
             <NavLink
-              className={(navData) => navData.isActive ? styles.active : styles.menu_link}
+              className={(navData) =>
+                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
               to='/pulse'
-            >Пульс
+            >
+              Пульс
             </NavLink>
           </li>
           <li>
             <NavLink
-              className={(navData) => navData.isActive ? styles.active : styles.menu_link}
+              className={(navData) =>
+                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
               to='/temperature'
-            >Температура
+            >
+              Температура
+            </NavLink>
+          </li>
+          <li className={styles.menuItem}>
+            <NavLink
+              className={(navData) =>
+                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
+              to='/graphics'
+            >
+              Графики
             </NavLink>
           </li>
         </ul>
