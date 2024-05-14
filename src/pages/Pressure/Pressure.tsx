@@ -17,7 +17,7 @@ const Pressure: FC<IPressure> = ({ caption, title }) => {
   useEffect(() => {
     document.title = title || caption;
   }, [title, caption]);
-  
+
   const {
     systolicHistory,
     setSystolicHistory,
@@ -95,6 +95,8 @@ const Pressure: FC<IPressure> = ({ caption, title }) => {
         onChangeParameter={onChangeSystolicValue}
         onChangeState={onChangeSystolicState}
       />
+
+
       <Parameter
         data={diastolicParameter.data}
         state={diastolicParameter.state}
