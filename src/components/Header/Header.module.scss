@@ -1,0 +1,25 @@
+@use "@/app/scss/media";
+@use "@/app/scss/variables" as v;
+
+.nav {
+  padding: 1rem;
+  background-color: v.$header-bg-color;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.link {
+  color: v.$secondary-text-color;
+}
+
+.active {
+  color: v.$primary-text-color;
+  text-shadow: 1px 0 0 currentColor;
+}
+

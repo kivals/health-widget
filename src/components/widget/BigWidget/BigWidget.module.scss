@@ -1,0 +1,35 @@
+@use "@/app/scss/variables" as v;
+
+.container {
+  color: v.$primary-text-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 5px;
+  background-color: #131415;
+  border-radius: 8px;
+  min-width: 300px;
+  min-height: 170px;
+  justify-content: center;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 7px;
+}
+
+.value {
+  font-size: 2.5rem;
+  margin-bottom: 7px;
+}
+
+.units {
+  font-size: 1rem;
+  margin-bottom: 7px;
+}
+
+.range {
+  margin-bottom: 7px;
+  width: 196px;
+}

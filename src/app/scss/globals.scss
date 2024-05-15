@@ -1,0 +1,67 @@
+@use 'media' as m;
+@use 'variables' as v;
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+html,
+body {
+  background-color: v.$base-color;
+  max-width: 100vw;
+  overflow-x: hidden;
+  color: v.$primary-text-color;
+}
+
+body {
+  font-size: 12px;
+
+  @include m.from('sm') {
+    font-size: 14px;
+  }
+
+  @include m.from('md') {
+    font-size: 16px;
+  }
+
+  @include m.from('lg') {
+    font-size: 18px;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+  background-color: v.$bg-color;
+}
+
+

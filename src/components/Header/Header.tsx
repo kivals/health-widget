@@ -1,61 +1,35 @@
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
-import styles from './Header.module.css';
+'use client';
 
-const Header = () => {
-  return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <ul className={styles.menu_list}>
-          <li>
-            <NavLink
-              className={(navData) =>
-                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
-              to='/pressure'
-            >
-              Давление
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={(navData) =>
-                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
-              to='/pulse'
-            >
-              Пульс
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={(navData) =>
-                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
-              to='/temperature'
-            >
-              Температура
-            </NavLink>
-          </li>
-          <li className={styles.menuItem}>
-            <NavLink
-              className={(navData) =>
-                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
-              to='/graphics'
-            >
-              Графики
-            </NavLink>
-          </li>
-          <li className={styles.menuItem}>
-            <NavLink
-              className={(navData) =>
-                classNames(styles.menu_link, { [styles.active]: navData.isActive })}
-              to='/outdoor'
-            >
-              Температура на улице
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
-};
+import clsx from 'clsx';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-export default Header;
+import pagesData from '@/config/pages';
+
+import styles from './Header.module.scss';
+
+const navLinks = Array.from(pagesData.values());
+
+export function Header() {
+	const pathname = usePathname();
+
+	return (
+		<nav className={styles.nav}>
+			<ul className={styles.list}>
+				{navLinks.map(link => (
+					<li key={link.name}>
+						<Link
+							className={clsx(
+								styles.link,
+								pathname.startsWith(link.url) && styles.active
+							)}
+							href={link.url}
+						>
+							{link.title}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</nav>
+	);
+}
