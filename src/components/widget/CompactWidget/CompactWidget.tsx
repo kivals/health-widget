@@ -1,30 +1,43 @@
-import clsx from 'clsx';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 import ApplyButton from '@/components/UI/buttons/ApplyButton/ApplyButton';
 import CancelButton from '@/components/UI/buttons/CancelButton/CancelButton';
 import ChangeButton from '@/components/UI/buttons/ChangeButton/ChangeButton';
 import NumberInput from '@/components/UI/inputs/NumberInput/NumberInput';
 import RangeInput from '@/components/UI/inputs/RangeInput/RangeInput';
+import { IEditableWidgetProps } from '@/components/widget/types/IWidgetProps';
 
 import styles from './CompactWidget.module.scss';
 
-export function CompactWidget() {
-	const [isEdit, setEdit] = useState<boolean>(false);
+const CompactWidget: FC<IEditableWidgetProps> = ({
+	config,
+	value,
+	isEdit,
+	storeNewValue,
+	changeEdit
+}) => {
+	const [editableValue, setEditableValue] = useState<number>();
+
+	const applyHandler = () => {
+		if (editableValue) {
+			storeNewValue(editableValue);
+			changeEdit();
+		}
+	};
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<h2 className={clsx(styles.title)}>Систолическое2 давление</h2>
+				<h2 className={styles.title}>{config.name}</h2>
 				{isEdit ? (
 					<div className={styles.buttons}>
-						<ApplyButton onClick={() => console.log('')} />
-						<CancelButton onClick={() => setEdit(false)} />
+						<ApplyButton onClick={applyHandler} />
+						<CancelButton onClick={changeEdit} />
 					</div>
 				) : (
 					<ChangeButton
 						isDisabled={false}
-						onClick={() => setEdit(true)}
+						onClick={changeEdit}
 						size={'sm'}
 					/>
 				)}
@@ -32,19 +45,19 @@ export function CompactWidget() {
 			<div className={styles.body}>
 				{isEdit ? (
 					<NumberInput
-						maxValue={0}
-						minValue={100}
-						onChange={() => console.log('')}
+						maxValue={config.maxValue}
+						minValue={config.minValue}
+						onChange={setEditableValue}
 					/>
 				) : (
 					<>
-						<span className={styles.value}>120</span>
-						<span className={styles.units}>мм. рт. ст.</span>
+						<span className={styles.value}>{value}</span>
+						<span className={styles.units}>{config.units}</span>
 						<div className={styles.range}>
 							<RangeInput
-								maxValue={100}
-								minValue={0}
-								value={56}
+								maxValue={config.maxValue}
+								minValue={config.minValue}
+								value={value}
 							/>
 						</div>
 					</>
@@ -52,4 +65,6 @@ export function CompactWidget() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default CompactWidget;

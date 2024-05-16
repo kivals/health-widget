@@ -7,12 +7,25 @@ import CancelButton from '@/components/UI/buttons/CancelButton/CancelButton';
 import ChangeButton from '@/components/UI/buttons/ChangeButton/ChangeButton';
 import NumberInput from '@/components/UI/inputs/NumberInput/NumberInput';
 import RangeInput from '@/components/UI/inputs/RangeInput/RangeInput';
-import { IWidgetProps } from '@/components/widget/IWidgetProps';
+import { IEditableWidgetProps } from '@/components/widget/types/IWidgetProps';
 
 import styles from './BigWidget.module.scss';
 
-const BigWidget: FC<IWidgetProps> = ({ config, value }) => {
-	const [isEdit, setEdit] = useState<boolean>(false);
+const BigWidget: FC<IEditableWidgetProps> = ({
+	config,
+	value,
+	isEdit,
+	storeNewValue,
+	changeEdit
+}) => {
+	const [editableValue, setEditableValue] = useState<number>();
+
+	const applyHandler = () => {
+		if (editableValue) {
+			storeNewValue(editableValue);
+			changeEdit();
+		}
+	};
 
 	return (
 		<div className={styles.container}>
@@ -22,11 +35,11 @@ const BigWidget: FC<IWidgetProps> = ({ config, value }) => {
 					<NumberInput
 						maxValue={config.maxValue}
 						minValue={config.minValue}
-						onChange={() => console.log('')}
+						onChange={setEditableValue}
 					/>
 					<div className={styles.buttons}>
-						<ApplyButton onClick={() => console.log('')} />
-						<CancelButton onClick={() => setEdit(false)} />
+						<ApplyButton onClick={applyHandler} />
+						<CancelButton onClick={changeEdit} />
 					</div>
 				</>
 			) : (
@@ -43,7 +56,7 @@ const BigWidget: FC<IWidgetProps> = ({ config, value }) => {
 					<ChangeButton
 						size={'lg'}
 						isDisabled={false}
-						onClick={() => setEdit(true)}
+						onClick={changeEdit}
 					/>
 				</>
 			)}

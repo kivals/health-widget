@@ -13,7 +13,7 @@ interface INumberInput {
 const NumberInput: FC<INumberInput> = ({ maxValue, minValue, onChange }) => {
 	return (
 		<input
-			type={'number'}
+			type='number'
 			min={minValue}
 			max={maxValue}
 			step={1}

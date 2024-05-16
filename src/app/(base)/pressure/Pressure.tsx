@@ -1,9 +1,10 @@
 'use client';
 
-import { IWidgetConfig } from '@/components/widget/IWidgetConfig';
 import Widget from '@/components/widget/Widget';
+import { IWidgetConfig } from '@/components/widget/types/IWidgetConfig';
 
 import styles from './Pressure.module.scss';
+import { useAppContext } from '@/context';
 
 const dWidgetConfig: IWidgetConfig = {
 	name: 'Диастолическое давление',
@@ -20,15 +21,26 @@ const sWidgetConfig: IWidgetConfig = {
 };
 
 export function Pressure() {
+	const {
+		diastolicHistory,
+		setDiastolicHistory,
+		systolicHistory,
+		setSystolicHistory
+	} = useAppContext();
+
 	return (
 		<div className={styles.widgets}>
 			<Widget
 				config={dWidgetConfig}
-				value={50}
+				value={diastolicHistory[diastolicHistory.length - 1]}
+				storeNewValue={value =>
+					setDiastolicHistory([...diastolicHistory, value])
+				}
 			/>
 			<Widget
 				config={sWidgetConfig}
-				value={50}
+				value={systolicHistory[systolicHistory.length - 1]}
+				storeNewValue={value => setSystolicHistory([...systolicHistory, value])}
 			/>
 		</div>
 	);

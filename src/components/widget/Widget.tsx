@@ -1,23 +1,29 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import BigWidget from '@/components/widget/BigWidget/BigWidget';
-import { CompactWidget } from '@/components/widget/CompactWidget/CompactWidget';
-import { IWidgetProps } from '@/components/widget/IWidgetProps';
+import CompactWidget from '@/components/widget/CompactWidget/CompactWidget';
+import { IWidgetProps } from '@/components/widget/types/IWidgetProps';
+
+import { rangeValue } from '@/utils/common';
 
 import { useAppContext } from '@/context';
 
-const Widget: FC<IWidgetProps> = ({ config, value }) => {
+const Widget: FC<IWidgetProps> = ({ config, value, storeNewValue }) => {
 	const { size } = useAppContext();
+	const [isEdit, setEdit] = useState<boolean>(false);
 
-	return size === 'lg' ? (
-		<BigWidget
+	const Compo = size === 'lg' ? BigWidget : CompactWidget;
+
+	return (
+		<Compo
 			config={config}
-			value={value}
+			value={rangeValue(config.minValue, config.maxValue, value)}
+			isEdit={isEdit}
+			storeNewValue={storeNewValue}
+			changeEdit={() => setEdit(prev => !prev)}
 		/>
-	) : (
-		<CompactWidget />
 	);
 };
 
