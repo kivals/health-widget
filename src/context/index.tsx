@@ -11,10 +11,14 @@ export type TAppContext = {
 	setSystolicHistory(history: number[]): void;
 	diastolicHistory: number[];
 	setDiastolicHistory(history: number[]): void;
+	pulseHistory: number[];
+	setPulseHistory(history: number[]): void;
 };
 
+//TODO вынести
 const mockSystolicHistoryData: number[] = [50, 60, 100, 80];
 const mockDiastolicHistoryData: number[] = [110, 100, 140, 180];
+const mockPulseHistoryData: number[] = [34, 45, 98, 55];
 
 export const AppContext = createContext<TAppContext | null>(null);
 
@@ -29,6 +33,10 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
 		...mockDiastolicHistoryData
 	]);
 
+	const [pulseHistory, setPulseHistory] = useState<number[]>([
+		...mockPulseHistoryData
+	]);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -37,7 +45,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
 				systolicHistory,
 				setSystolicHistory,
 				diastolicHistory,
-				setDiastolicHistory
+				setDiastolicHistory,
+				pulseHistory,
+				setPulseHistory
 			}}
 		>
 			{children}
