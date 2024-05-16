@@ -1,21 +1,19 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
+
+import pagesData from '@/config/pages';
 
 import { Temperature } from '@/app/(base)/temperature/Temperature';
 
+const pageData = pagesData.get('Temperature');
+
 export const metadata: Metadata = {
-	title: 'Temperature',
-	description: 'Temperature page'
+	title: pageData?.title
 };
 
-export default function TemperaturePage() {
-	return <Temperature />;
+export default function Page() {
+	return (
+		<div>
+			<Temperature />
+		</div>
+	);
 }
-
-/*export const metadata: Metadata = {
-	title: 'Dashboard',
-	...NO_INDEX_PAGE
-};
-
-export default function DashboardPage() {
-	return <div>DashboardPage</div>;
-}*/
