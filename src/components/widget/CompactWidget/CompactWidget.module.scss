@@ -1,21 +1,42 @@
 @use "@/app/scss/variables" as v;
 
 .container {
+  padding: 0.6rem;
   color: v.$primary-text-color;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: v.$bg-widget;
   border-radius: 8px;
-  min-width: 300px;
-  min-height: 170px;
-  justify-content: center;
+  width: 350px;
 }
 
 .header {
-
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .body {
+  display: flex;
+  align-items: center;
+}
 
+.value {
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+
+.units {
+  font-size: 1rem;
+  margin-right: 1.9rem;
+}
+
+.range {
+  width: 150px;
+}
+
+.buttons {
+  display: flex;
+  gap: 3px;
 }

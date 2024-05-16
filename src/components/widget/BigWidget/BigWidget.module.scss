@@ -10,7 +10,7 @@
   border-radius: 8px;
   min-width: 300px;
   min-height: 170px;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .title {
@@ -32,4 +32,9 @@
 .range {
   margin-bottom: 7px;
   width: 196px;
+}
+
+.buttons {
+  display: flex;
+  gap: 3px;
 }
