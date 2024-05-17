@@ -1,0 +1,57 @@
+@use "../../../app/scss/variables" as v;
+
+.container {
+  color: v.$primary-text-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: v.$bg-widget;
+  border-radius: 8px;
+  min-width: 300px;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 7px;
+}
+
+.value {
+  font-size: 2.5rem;
+}
+
+.units {
+  font-size: 1rem;
+}
+
+.container.small {
+  flex-direction: row;
+  min-height: auto;
+  justify-content: center;
+}
+
+.container.small .body {
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.container.small .name {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.container.small .value {
+  font-size: .9rem;
+  margin-right: .5rem
+}
+
+.container.small .units {
+  font-size: .9rem;
+  margin-right: .9rem
+}
+
